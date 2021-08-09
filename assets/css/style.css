@@ -15,7 +15,7 @@ body {
   font-family: "Open Sans", sans-serif;
   color: var(--sh-PT-color);
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 18px;
   margin: 0 auto;
   letter-spacing: 0.05em;
@@ -33,6 +33,30 @@ a .active {
 a:hover {
   color: inherit;
   text-decoration: none;
+}
+
+.active {
+  color: var(--sh-primary) !important;
+}
+
+.opacity-0{
+  opacity: 0 !important;
+}
+
+.opacity-1{
+  opacity: 0.2 !important;
+}
+
+.opacity-2{
+  opacity: 0.4 !important;
+}
+
+.opacity-3{
+  opacity: 0.6 !important;
+}
+
+.opacity-4{
+  opacity: 0.8 !important;
 }
 
 .text-p{
@@ -58,6 +82,10 @@ a:hover {
   margin-left: auto;
   padding-right: 15px;
   padding-left: 15px;
+}
+
+.text-log{
+  font-size: 15px;
 }
 
 .text-title{
@@ -106,9 +134,12 @@ a:hover {
   font-size: 39px;
   font-weight: 600;
   color: var(--sh-PT-color);
-  
 }
-
+.text-head-3{
+  font-size: 52px;
+  font-weight: 600;
+  color: var(--sh-PT-color);
+}
 .text-more{
   font-weight: normal;
   font-size: 24px;
@@ -159,6 +190,10 @@ a:hover {
   display: flex;
 }
 
+.subscribe2{
+  display: flex;
+}
+
 .sub-con{
   align-self: flex-end;
   width: 100%;
@@ -167,21 +202,38 @@ a:hover {
 .bg-sub{
   border-top-right-radius: 22px !important;
   background-color: var(--sh-secondary);
+}
 
+.bg-sub-reg{
+  border-top-right-radius: 22px !important;
+  background-color: var(--sh-primary);
+}
+
+.sub-form-con {
+  width: 100%;
+  border-radius: 24px;
 }
 
 .sub-label {
-  font-size: 19px;
-  color: #ffffffb3;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 400;
+}
+
+.form-control:focus, .form-control:active{
+  background-color: transparent;
 }
 
 .p-form {
   background: inherit;
   border: 0px;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid var(--sh-light-green);
   border-radius: 0px;
-  width: 80%;
-  margin-top: 5px;
+  color: #fff;
+}
+
+.subscribe-form{
+  width: 100%;
 }
 
 .text-footer{
@@ -211,6 +263,20 @@ a:hover {
 @media (min-width: 1200px) {
   .container {
       max-width: 1400px;
+  }
+  .hero-img{
+    margin-top: -150px;
+  }
+
+  .subscribe2{
+    height: 700px;
+  }
+
+  .subscribe3{
+    height: 900px;
+  }
+  .bg-sub-reg{
+    height: 900px;
   }
 }
 
@@ -455,6 +521,49 @@ a:hover {
   background-color: #fff;
 }
 
+.btn-p2 {
+  color:#fff;
+  border-radius: 50px;
+  padding: 15px 55px 15px 55px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 18px;
+  display: inline-block;
+  border: 1px solid var(--sh-primary);
+  background-color:var(--sh-primary);
+  font-weight: 500;
+  line-height: 23px;
+}
+.btn-p2:hover {
+  color:var(--sh-primary);
+  border: 1px solid var(--sh-primary);
+  background-color: #fff;
+}
+
+.btn-p-outline.active {
+  background: var(--sh-primary);
+  color: var(--sh-PT-color) !important;
+}
+
+.btn-white {
+  color:var(--sh-PT-color);
+  border-radius: 50px;
+  padding: 15px 55px 15px 55px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 18px;
+  display: inline-block;
+  border: 1px solid var(--sh-primary);
+  background-color: #fff;
+  font-weight: 500;
+  line-height: 23px;
+}
+.btn-white:hover {
+  color:var(--sh-PT-color);
+  border: 1px solid var(--sh-primary);
+  background-color: #fff;
+}
+
 .btn-p-outline {
   margin-left: 25px;
   color:var(--sh-PT-color);
@@ -629,9 +738,7 @@ a:hover {
 # Hero Section
 --------------------------------------------------------------*/
 
-.hero-img{
-  margin-top: -150px;
-}
+
 
 
 
