@@ -25,7 +25,10 @@
   unicode-range: U+000-5FF;
 }
 
-
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff !important;
+    background-color: #556ee6;
+}
 body {
   font-family: 'Poppins', sans-serif;
   color: var(--sh-PT-color);

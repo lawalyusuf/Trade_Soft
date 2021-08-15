@@ -1,25 +1,63 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 
 require('./bootstrap');
 
 window.Vue = require('vue').default;
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+import {Form, HasError, AlertError} from 'vform';
+window.toast = toast;
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+window.Form = Form;
+
+Vue.component(HasError.name, HasError);
+Vue.component(AlertError.name, AlertError);
+import swal from 'sweetalert2'
+window.swal = swal;
+
+const toast = swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    onOpen: (toast) => {
+        toast.addEventListener('mouseenter', swal.stopTimer)
+        toast.addEventListener('mouseleave', swal.resumeTimer)
+    }
+});
+
+import VueProgressBar from 'vue-progressbar'
+Vue.use(VueProgressBar, {
+    color: '#032539',
+    failedColor: 'red',
+    height: '10px'
+
+})
+
+import numeral from 'numeral';
+import moment from 'moment'
+
+Vue.filter('myDate', function(created){
+    return moment(created).format('MMMM Do YYYY');
+})
+
+Vue.filter('timeAgo', function(created){
+    return moment(created).startOf('hour').fromNow();
+})
+
+Vue.filter('currency', function(text){
+    var number = numeral(text);
+
+    return "₦" + number.format('0,0.00');
+
+})
+
+Vue.component('add-recipient', () =>import('./components/add-recipient.vue'));
+Vue.component('amount', () =>import('./components/amount.vue'));
+Vue.component('rd', () =>import('./components/showRD.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

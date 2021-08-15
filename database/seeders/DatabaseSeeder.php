@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\CountriesTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // $this->call(CountriesTableSeeder::class, 1);
+        // $this->call(CurrenciesTableSeeder::class, 1);
+        $this->call(BankTableSeeder::class, 1);
     }
 }

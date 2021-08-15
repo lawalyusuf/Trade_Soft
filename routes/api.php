@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\APIController;
+use App\Http\Controllers\BankController;
+use App\Http\Controllers\CountryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/countries', [CountryController::class, 'index']);
+Route::get('/banks', [BankController::class, 'index']);
+Route::post('/addRecipient', [APIController::class, 'addRecipient']);
+Route::post('/removeRecipient', [APIController::class, 'removeRecipient']);
+
+

@@ -45,4 +45,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function recipients(){
+        $recipients = Recipient::whereUser_id(auth()->user()->id)->get(['id','country','bank','account_number','user_id', 'account_name']);
+        $recipients->transform(function($recipient){
+            $recipient->country = Country::whereCode($recipient->country)->first(['name', 'code', 'currency', 'PhonenumberPrefix', 'Iso2Code']);
+            $recipient->bank = Bank::where('BankID',$recipient->bank)->first(['BankID','Name','Bank','CountryCode', 'Code']);
+            return $recipient;
+        });
+        return $recipients;
+    }
+
+    public function transactions(){
+        return $this->hasMany(Transaction::class);
+    }
 }

@@ -1,8 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RecipientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +33,10 @@ Route::group(['prefix' => 'guest'], function() {
     Route::post('/auth/continue', [AuthController::class, 'postContinue'])->name('post.continue');
 });
 
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+    Route::resource('recipient', RecipientController::class);
+    Route::post('/auth/logout', [AuthController::class, 'logout'])->name('user.logout');
 
-Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+});

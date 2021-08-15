@@ -1,0 +1,10 @@
+[
+    {"Code":"NGN","Name":"Nigerian Naira","Symbol":"₦"},
+    {"Code":"GBP","Name":"Great British Pound","Symbol":"£"},
+    {"Code":"EUR","Name":"Euro","Symbol":"€"},
+    {"Code":"CAD","Name":"Canadian Dollars","Symbol":"$"},
+    {"Code":"GHS","Name":"Ghanian Cedi","Symbol":"₵"},
+    {"Code":"KES","Name":"Kenyan Shilling","Symbol":"K"},
+    {"Code":"NZD","Name":"New Zealand Dollars","Symbol":"$"}
+
+]
