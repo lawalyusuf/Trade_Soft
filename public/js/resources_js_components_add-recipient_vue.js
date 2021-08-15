@@ -111,22 +111,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     onSubmit: function onSubmit() {
       var _this2 = this;
 
-      this.dis = false;
-      this.form.ddd = this.user;
-      this.form.post('/addRecipient').then(function () {
-        _this2.$Progress.finish();
+      swal.fire({
+        title: 'Add record?',
+        text: "Recipient record will be added to your recipient list!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#353535',
+        confirmButtonText: 'Yes, add it!'
+      }).then(function (result) {
+        ///send request
+        if (result.value) {
+          _this2.dis = false;
+          _this2.form.ddd = _this2.user;
 
-        _this2.dis = true;
-        swal.fire('success!', _this2.form.account_name + ' has be added to your recipient list', 'success').then(function () {
-          window.location = '/recipient';
-        });
-      })["catch"](function () {
-        _this2.dis = true;
-        _this2.err = true;
+          _this2.form.post('/addRecipient').then(function () {
+            _this2.$Progress.finish();
 
-        _this2.$Progress.fail();
+            _this2.dis = true;
+            swal.fire('success!', _this2.form.account_name + ' has be added to your recipient list', 'success').then(function () {
+              window.location = '/recipient';
+            });
+          })["catch"](function () {
+            _this2.dis = true;
+            _this2.err = true;
 
-        swal.fire('Error!', _this2.form.account_name + ' cannot be added to your recipient list', 'error');
+            _this2.$Progress.fail();
+
+            swal.fire('Error!', _this2.form.account_name + ' cannot be added to your recipient list', 'error');
+          });
+        }
       });
     }
   },

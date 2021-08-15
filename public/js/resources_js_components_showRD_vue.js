@@ -73,22 +73,36 @@ __webpack_require__.r(__webpack_exports__);
     remove: function remove() {
       var _this = this;
 
-      this.dis = false;
-      this.form.id = this.recipient.id;
-      this.form.post('/removeRecipient').then(function () {
-        _this.$Progress.finish();
+      swal.fire({
+        title: 'Are you sure?',
+        text: "Recipient record will be removed permanetly!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#353535',
+        confirmButtonText: 'Yes, remove it!'
+      }).then(function (result) {
+        ///send request
+        if (result.value) {
+          _this.dis = false;
+          _this.form.id = _this.recipient.id;
 
-        _this.dis = true;
-        swal.fire('success!', _this.recipient.account_name + ' has be remove to your recipient list', 'success').then(function () {
-          window.location = '/recipient';
-        });
-      })["catch"](function () {
-        _this.dis = true;
-        _this.err = true;
+          _this.form.post('/removeRecipient').then(function () {
+            _this.$Progress.finish();
 
-        _this.$Progress.fail();
+            _this.dis = true;
+            swal.fire('success!', _this.recipient.account_name + ' has be remove to your recipient list', 'success').then(function () {
+              window.location = '/recipient';
+            });
+          })["catch"](function () {
+            _this.dis = true;
+            _this.err = true;
 
-        swal.fire('Error!', _this.recipient.account_name + ' cannot be remove to your recipient list', 'error');
+            _this.$Progress.fail();
+
+            swal.fire('Error!', _this.recipient.account_name + ' cannot be remove to your recipient list', 'error');
+          });
+        }
       });
     },
     show: function show() {

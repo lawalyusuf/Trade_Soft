@@ -91,31 +91,47 @@
                 })
             },
             onSubmit(){
-                this.dis = false;
-                this.form.ddd = this.user;
-                this.form.post('/addRecipient')
-                .then(()=>{
-                    this.$Progress.finish();
-                    this.dis = true
-                    swal.fire(
-                        'success!',
-                        this.form.account_name+' has be added to your recipient list',
-                        'success'
-                    ).then(() =>{
-                        window.location = '/recipient'
-                    });
+                swal.fire({
+                title: 'Add record?',
+                text: "Recipient record will be added to your recipient list!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc3545',
+                cancelButtonColor: '#353535',
+                confirmButtonText: 'Yes, add it!'
+                }).then((result) => {
+                    ///send request
+                    if (result.value) {
+
+                        this.dis = false;
+                        this.form.ddd = this.user;
+                        this.form.post('/addRecipient')
+                        .then(()=>{
+                            this.$Progress.finish();
+                            this.dis = true
+                            swal.fire(
+                                'success!',
+                                this.form.account_name+' has be added to your recipient list',
+                                'success'
+                            ).then(() =>{
+                                window.location = '/recipient'
+                            });
+
+                        })
+                        .catch(()=>{
+                            this.dis = true
+                            this.err = true;
+                            this.$Progress.fail();
+                            swal.fire(
+                                'Error!',
+                                this.form.account_name+' cannot be added to your recipient list',
+                                'error'
+                            )
+                        })
+                    }
 
                 })
-                .catch(()=>{
-                    this.dis = true
-                    this.err = true;
-                    this.$Progress.fail();
-                    swal.fire(
-                        'Error!',
-                        this.form.account_name+' cannot be added to your recipient list',
-                        'error'
-                    )
-                })
+
             }
 
         },

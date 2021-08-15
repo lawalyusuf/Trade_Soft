@@ -62,31 +62,47 @@
 
         methods:{
             remove(){
-                this.dis = false;
-                this.form.id = this.recipient.id
-                this.form.post('/removeRecipient')
-                .then(()=>{
-                    this.$Progress.finish();
-                    this.dis = true
-                    swal.fire(
-                        'success!',
-                        this.recipient.account_name+' has be remove to your recipient list',
-                        'success'
-                    ).then(() =>{
-                        window.location = '/recipient'
-                    });
+                swal.fire({
+                title: 'Are you sure?',
+                text: "Recipient record will be removed permanetly!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc3545',
+                cancelButtonColor: '#353535',
+                confirmButtonText: 'Yes, remove it!'
+                }).then((result) => {
+                    ///send request
+                    if (result.value) {
+
+                        this.dis = false;
+                        this.form.id = this.recipient.id
+                        this.form.post('/removeRecipient')
+                        .then(()=>{
+                            this.$Progress.finish();
+                            this.dis = true
+                            swal.fire(
+                                'success!',
+                                this.recipient.account_name+' has be remove to your recipient list',
+                                'success'
+                            ).then(() =>{
+                                window.location = '/recipient'
+                            });
+
+                        })
+                        .catch(()=>{
+                            this.dis = true
+                            this.err = true;
+                            this.$Progress.fail();
+                            swal.fire(
+                                'Error!',
+                                this.recipient.account_name+' cannot be remove to your recipient list',
+                                'error'
+                            )
+                        })
+                    }
 
                 })
-                .catch(()=>{
-                    this.dis = true
-                    this.err = true;
-                    this.$Progress.fail();
-                    swal.fire(
-                        'Error!',
-                        this.recipient.account_name+' cannot be remove to your recipient list',
-                        'error'
-                    )
-                })
+
             },
             show(){
                 $('#'+this.recipient.id).modal('show');
