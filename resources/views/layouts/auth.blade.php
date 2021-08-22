@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title> Welcome to Our Website- Landing Page </title>
+    <title>@yield("title") | TradeSoft</title>
     <link href="{{ asset('soft/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('soft/assets/css/all.min.css')}}">
+    <link href="{{ asset('css/app.css')}}" id="app-style" rel="stylesheet" type="text/css" />
     <link href="{{ asset('soft/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,7 +23,11 @@
                         <li><a href="">Contact</a></li>
                     </ul>
                 </nav>
-                <a href="{{ route('user.login') }}" class="btn-p-outline">Join now</a>
+                @if (auth()->user())
+                    <a href="{{ route('dashboard') }}" class="btn-p-outline">Dashboard</a>
+                @else
+                    <a href="{{ route('user.login') }}" class="btn-p-outline">Join now</a>
+                @endif
             </div>
         </header>
         <section id="subscribe" class="mt-5">
@@ -65,6 +70,7 @@
         <script src="{{ asset('soft/assets/vendor/venobox/venobox.min.js') }}"></script>
         <script src="{{ asset('soft/assets/vendor/owl.carousel/owl.carousel.min.js') }}"></script>
         <script src="{{ asset('soft/assets/vendor/aos/aos.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('soft/assets/js/main.js') }}"></script>
     </body>
 </html>

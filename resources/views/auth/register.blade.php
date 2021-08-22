@@ -1,5 +1,7 @@
 @extends('layouts.auth')
-
+@section('title')
+Create an account
+@endsection
 @section('content')
 <div class="container py-5">
     <div class="row p-0">

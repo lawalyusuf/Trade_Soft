@@ -58,14 +58,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    recipient: [Object]
+    recipient: [Object],
+    user_id: [Number]
   },
   data: function data() {
     return {
       err: false,
       dis: true,
       form: new Form({
-        id: ''
+        id: '',
+        ddd: ''
       })
     };
   },
@@ -86,10 +88,9 @@ __webpack_require__.r(__webpack_exports__);
         if (result.value) {
           _this.dis = false;
           _this.form.id = _this.recipient.id;
+          _this.form.ddd = _this.user_id;
 
           _this.form.post('/removeRecipient').then(function () {
-            _this.$Progress.finish();
-
             _this.dis = true;
             swal.fire('success!', _this.recipient.account_name + ' has be remove to your recipient list', 'success').then(function () {
               window.location = '/recipient';
@@ -97,9 +98,6 @@ __webpack_require__.r(__webpack_exports__);
           })["catch"](function () {
             _this.dis = true;
             _this.err = true;
-
-            _this.$Progress.fail();
-
             swal.fire('Error!', _this.recipient.account_name + ' cannot be remove to your recipient list', 'error');
           });
         }

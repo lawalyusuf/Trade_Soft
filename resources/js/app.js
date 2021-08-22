@@ -29,13 +29,6 @@ const toast = swal.mixin({
     }
 });
 
-import VueProgressBar from 'vue-progressbar'
-Vue.use(VueProgressBar, {
-    color: '#032539',
-    failedColor: 'red',
-    height: '10px'
-
-})
 
 import numeral from 'numeral';
 import moment from 'moment'
@@ -51,13 +44,18 @@ Vue.filter('timeAgo', function(created){
 Vue.filter('currency', function(text){
     var number = numeral(text);
 
-    return "₦" + number.format('0,0.00');
+    return number.format('0,0.00');
 
 })
 
 Vue.component('add-recipient', () =>import('./components/add-recipient.vue'));
 Vue.component('amount', () =>import('./components/amount.vue'));
 Vue.component('rd', () =>import('./components/showRD.vue'));
+Vue.component('timeago', () =>import('./components/time.vue'));
+Vue.component('transaction', () =>import('./components/transaction.vue'));
+Vue.component('calculator', () =>import('./components/calculator.vue'));
+Vue.component('send-calculator', () =>import('./components/send-calculator.vue'));
+Vue.component('currency', () =>import('./components/currency.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

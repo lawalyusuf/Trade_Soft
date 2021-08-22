@@ -1,5 +1,7 @@
 @extends('layouts.auth')
-
+@section('title')
+Login
+@endsection
 @section('content')
 <div class="container py-5">
     <div class="row p-0">
@@ -13,20 +15,21 @@
                         <h4 class="text-more2 pt-1 text-white opacity-4">WELCOME BACK</h4>
                         <h1 class="text-head2 pt-1 text-white">Login To View <br>Your Account</h1>
                         @include("partials.alert")
-                        <form class="subscribe-form" method="POST" action="{{ route('user.login') }}">
+                        <form class="subscribe-form needs-validation" novalidate method="POST" action="{{ route('user.login') }}">
                             @csrf
                             <div class="form-group mt-5">
                                 <label class="sub-label opacity-4">Email Address</label>
-                                <input type="email" name="email" class="form-control p-form">
+                                <input type="email" required name="email" class="form-control p-form">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+
                             </div>
                             <div class="form-group mt-5">
                                 <label class="sub-label opacity-4">Password</label>
-                                <input type="password" name="password" class="form-control bg-transparent p-form">
+                                <input type="password" required name="password" class="form-control bg-transparent p-form">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -48,5 +51,24 @@
             @endif
         </div>
     </div>
+    <script>
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+            }, false);
+        })();
+    </script>
 </div>
 @endsection

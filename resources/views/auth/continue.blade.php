@@ -1,5 +1,7 @@
 @extends('layouts.auth')
-
+@section('title')
+Continue Registration
+@endsection
 @section('content')
 <div class="container py-5">
     <div class="row p-0">
@@ -26,7 +28,7 @@
                             </div>
 
                             <div class="form-group mt-5">
-                                <label class="sub-label opacity-4">Full Name</label>
+                                <label class="sub-label opacity-4">Email Address</label>
                                 <input type="email" name="email" value="{{ old('email') }}" class="form-control p-form @error('email') is-invalid @enderror">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

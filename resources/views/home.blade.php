@@ -5,6 +5,7 @@ Dashboard
 @endsection
 
 @section("content")
+@include('partials.style')
 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
     <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
 </div>
@@ -56,7 +57,7 @@ Dashboard
                 <div class="d-flex">
                     <div class="flex-grow-1">
                         <p class="text-muted fw-medium">Average Price</p>
-                        <h4 class="mb-0"><amount amount="{{ auth()->user()->recipients()->count() }}"></amount></h4>
+                        <h4 class="mb-0"><amount amount="7000"></amount></h4>
                     </div>
 
                     <div class="flex-shrink-0 align-self-center">
@@ -71,4 +72,10 @@ Dashboard
         </div>
     </div>
 </div>
+
+
+@include('partials.transaction')
+
 @endsection
+
+@include('partials.js')

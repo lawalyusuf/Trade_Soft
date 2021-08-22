@@ -70,6 +70,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -126,8 +128,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _this2.form.ddd = _this2.user;
 
           _this2.form.post('/addRecipient').then(function () {
-            _this2.$Progress.finish();
-
             _this2.dis = true;
             swal.fire('success!', _this2.form.account_name + ' has be added to your recipient list', 'success').then(function () {
               window.location = '/recipient';
@@ -135,9 +135,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           })["catch"](function () {
             _this2.dis = true;
             _this2.err = true;
-
-            _this2.$Progress.fail();
-
             swal.fire('Error!', _this2.form.account_name + ' cannot be added to your recipient list', 'error');
           });
         }
@@ -691,6 +688,7 @@ var render = function() {
                 attrs: {
                   "track-by": "Name",
                   label: "Name",
+                  placeholder: "Choose Country",
                   options: _vm.countries
                 },
                 on: { input: _vm.getBank },
@@ -720,6 +718,7 @@ var render = function() {
                 attrs: {
                   "track-by": "Name",
                   label: "Name",
+                  placeholder: "Choose bank",
                   options: _vm.banks
                 },
                 model: {

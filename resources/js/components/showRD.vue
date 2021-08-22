@@ -47,7 +47,8 @@
     export default {
 
         props:{
-            recipient: [Object]
+            recipient: [Object],
+            user_id :[Number]
         },
 
         data(){
@@ -56,6 +57,7 @@
                 dis: true,
                 form: new Form({
                     id: '',
+                    ddd: '',
                 })
             }
         },
@@ -75,10 +77,10 @@
                     if (result.value) {
 
                         this.dis = false;
-                        this.form.id = this.recipient.id
+                        this.form.id = this.recipient.id;
+                        this.form.ddd = this.user_id;
                         this.form.post('/removeRecipient')
                         .then(()=>{
-                            this.$Progress.finish();
                             this.dis = true
                             swal.fire(
                                 'success!',
@@ -92,7 +94,6 @@
                         .catch(()=>{
                             this.dis = true
                             this.err = true;
-                            this.$Progress.fail();
                             swal.fire(
                                 'Error!',
                                 this.recipient.account_name+' cannot be remove to your recipient list',

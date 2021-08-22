@@ -9,6 +9,7 @@
                     track-by="Name"
                     label="Name"
                     @input="getBank"
+                    placeholder="Choose Country"
                     :options="countries">
                     </multiselect>
                     <has-error :form="form" field="country"></has-error>
@@ -22,6 +23,7 @@
                     v-model="form.bank"
                     track-by="Name"
                     label="Name"
+                    placeholder="Choose bank"
                     :options="banks">
                     </multiselect>
                     <has-error :form="form" field="bank"></has-error>
@@ -102,12 +104,10 @@
                 }).then((result) => {
                     ///send request
                     if (result.value) {
-
                         this.dis = false;
                         this.form.ddd = this.user;
                         this.form.post('/addRecipient')
                         .then(()=>{
-                            this.$Progress.finish();
                             this.dis = true
                             swal.fire(
                                 'success!',
@@ -121,7 +121,6 @@
                         .catch(()=>{
                             this.dis = true
                             this.err = true;
-                            this.$Progress.fail();
                             swal.fire(
                                 'Error!',
                                 this.form.account_name+' cannot be added to your recipient list',

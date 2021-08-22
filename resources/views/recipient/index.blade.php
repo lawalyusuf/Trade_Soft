@@ -15,13 +15,7 @@ Recipients
             <div class="card-body">
                 <div class="d-sm-flex flex-wrap">
                     <h4 class="card-title mb-4">Recipients</h4>
-                    <div class="ms-auto">
-                        <ul class="nav nav-pills">
-                            <li class="nav-item">
-                                <a class="nav-link active text-white" href="#">Add recipient</a>
-                            </li>
-                        </ul>
-                    </div>
+
                 </div>
 
                 <div class="table-responsive">
@@ -41,7 +35,7 @@ Recipients
                                 <td><a href="javascript: void(0);" class="text-body fw-bold">{{ $recipient->account_name }}</a> </td>
                                 <td><a href="javascript: void(0);" class="text-body fw-bold">{{ $recipient->country->name }}</a> </td>
                                 <td>
-                                    <rd :recipient='{{ $recipient }}'></rd>
+                                    <rd :recipient='{{ $recipient }}' :user_id="{{ auth()->user()->id }}"></rd>
                                 </td>
                             </tr>
 
